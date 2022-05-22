@@ -1,0 +1,58 @@
+﻿@model LexiNetV2.FeedbackTbl
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FeedbackTbl</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.readabilityRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.readabilityRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.spacingRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.spacingRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.colourRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.colourRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResourcesTbl.resourceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResourcesTbl.resourceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserTbl.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserTbl.username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.feebackID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

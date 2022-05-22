@@ -129,7 +129,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FeedbackTblsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ResourcesTblsController.cs" />
     <Compile Include="Controllers\UserTblsController.cs" />
     <Compile Include="FeedbackTbl.cs">
       <DependentUpon>LexiNetmodel.tt</DependentUpon>
@@ -218,6 +220,16 @@
     <Content Include="Views\UserTbls\Details.cshtml" />
     <Content Include="Views\UserTbls\Edit.cshtml" />
     <Content Include="Views\UserTbls\Index.cshtml" />
+    <Content Include="Views\ResourcesTbls\Create.cshtml" />
+    <Content Include="Views\ResourcesTbls\Delete.cshtml" />
+    <Content Include="Views\ResourcesTbls\Details.cshtml" />
+    <Content Include="Views\ResourcesTbls\Edit.cshtml" />
+    <Content Include="Views\ResourcesTbls\Index.cshtml" />
+    <Content Include="Views\FeedbackTbls\Create.cshtml" />
+    <Content Include="Views\FeedbackTbls\Delete.cshtml" />
+    <Content Include="Views\FeedbackTbls\Details.cshtml" />
+    <Content Include="Views\FeedbackTbls\Edit.cshtml" />
+    <Content Include="Views\FeedbackTbls\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
