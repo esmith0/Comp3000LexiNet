@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LexiNetDbModelStoreContainer" CdmEntityContainer="LexiNetDbEntities2">
+    <EntitySetMapping Name="FeedbackTbls">
+      <EntityTypeMapping TypeName="LexiNetDbModel.FeedbackTbl">
+        <MappingFragment StoreEntitySet="FeedbackTbl">
+          <ScalarProperty Name="reviewerName" ColumnName="reviewerName" />
+          <ScalarProperty Name="feebackID" ColumnName="feebackID" />
+          <ScalarProperty Name="readabilityRating" ColumnName="readabilityRating" />
+          <ScalarProperty Name="spacingRating" ColumnName="spacingRating" />
+          <ScalarProperty Name="colourRating" ColumnName="colourRating" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="resourceID" ColumnName="resourceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResourcesTbls">
+      <EntityTypeMapping TypeName="LexiNetDbModel.ResourcesTbl">
+        <MappingFragment StoreEntitySet="ResourcesTbl">
+          <ScalarProperty Name="resourceID" ColumnName="resourceID" />
+          <ScalarProperty Name="resourceName" ColumnName="resourceName" />
+          <ScalarProperty Name="resourceType" ColumnName="resourceType" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTbls">
+      <EntityTypeMapping TypeName="LexiNetDbModel.UserTbl">
+        <MappingFragment StoreEntitySet="UserTbl">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="resourceReviewsBs">
+      <EntityTypeMapping TypeName="LexiNetDbModel.resourceReviewsB">
+        <MappingFragment StoreEntitySet="resourceReviewsB">
+          <ScalarProperty Name="colourRating" ColumnName="colourRating" />
+          <ScalarProperty Name="spacingRating" ColumnName="spacingRating" />
+          <ScalarProperty Name="readabilityRating" ColumnName="readabilityRating" />
+          <ScalarProperty Name="resourceType" ColumnName="resourceType" />
+          <ScalarProperty Name="resourceName" ColumnName="resourceName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="validateA" FunctionName="LexiNetDbModel.Store.validateA" />
+  </EntityContainerMapping>
+</Mapping>

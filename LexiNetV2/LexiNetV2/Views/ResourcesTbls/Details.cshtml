@@ -1,0 +1,42 @@
+﻿@model LexiNetV2.ResourcesTbl
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.resourceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.resourceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.resourceType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.resourceType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserTbl.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserTbl.username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.resourceID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

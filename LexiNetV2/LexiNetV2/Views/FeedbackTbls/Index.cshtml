@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LexiNetV2.FeedbackTbl>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Review Resources</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <p><b>Readability Rating:</b></p>
+        </th>
+        <th>
+            <p><b>Spacing Rating:</b></p>
+        </th>
+        <th>
+            <p><b>Colour Rating:</b></p>
+        </th>
+        <th>
+            <p><b>Resource Name</b></p>
+        </th>
+        <th>
+            <p><b>Reviewed by:</b></p>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.readabilityRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spacingRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.colourRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResourcesTbl.resourceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserTbl.username)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.feebackID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.feebackID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.feebackID })
+        </td>
+    </tr>
+}
+
+</table>

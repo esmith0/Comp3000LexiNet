@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LexiNetDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FeedbackTbl">
+          <Key>
+            <PropertyRef Name="feebackID" />
+          </Key>
+          <Property Name="feebackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="readabilityRating" Type="int" />
+          <Property Name="spacingRating" Type="int" />
+          <Property Name="colourRating" Type="int" />
+          <Property Name="userID" Type="int" />
+          <Property Name="resourceID" Type="int" />
+          <Property Name="reviewerName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ResourcesTbl">
+          <Key>
+            <PropertyRef Name="resourceID" />
+          </Key>
+          <Property Name="resourceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="resourceName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="resourceType" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="userID" Type="int" />
+        </EntityType>
+        <EntityType Name="UserTbl">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LexiNetDb.dbo.resourceReviewsB' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="resourceReviewsB">
+          <Key>
+            <PropertyRef Name="resourceName" />
+            <PropertyRef Name="resourceType" />
+          </Key>
+          <Property Name="resourceName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="resourceType" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="readabilityRating" Type="int" />
+          <Property Name="spacingRating" Type="int" />
+          <Property Name="colourRating" Type="int" />
+        </EntityType>
+        <Association Name="FK__FeedbackT__resou__5441852A">
+          <End Role="ResourcesTbl" Type="Self.ResourcesTbl" Multiplicity="0..1" />
+          <End Role="FeedbackTbl" Type="Self.FeedbackTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResourcesTbl">
+              <PropertyRef Name="resourceID" />
+            </Principal>
+            <Dependent Role="FeedbackTbl">
+              <PropertyRef Name="resourceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FeedbackT__userI__534D60F1">
+          <End Role="UserTbl" Type="Self.UserTbl" Multiplicity="0..1" />
+          <End Role="FeedbackTbl" Type="Self.FeedbackTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTbl">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="FeedbackTbl">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Resources__userI__5070F446">
+          <End Role="UserTbl" Type="Self.UserTbl" Multiplicity="0..1" />
+          <End Role="ResourcesTbl" Type="Self.ResourcesTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTbl">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="ResourcesTbl">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="validateA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="LexiNetDbModelStoreContainer">
+          <EntitySet Name="FeedbackTbl" EntityType="Self.FeedbackTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResourcesTbl" EntityType="Self.ResourcesTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTbl" EntityType="Self.UserTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="resourceReviewsB" EntityType="Self.resourceReviewsB" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [resourceReviewsB].[resourceName] AS [resourceName], 
+    [resourceReviewsB].[resourceType] AS [resourceType], 
+    [resourceReviewsB].[readabilityRating] AS [readabilityRating], 
+    [resourceReviewsB].[spacingRating] AS [spacingRating], 
+    [resourceReviewsB].[colourRating] AS [colourRating]
+    FROM [dbo].[resourceReviewsB] AS [resourceReviewsB]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__FeedbackT__resou__5441852A" Association="Self.FK__FeedbackT__resou__5441852A">
+            <End Role="ResourcesTbl" EntitySet="ResourcesTbl" />
+            <End Role="FeedbackTbl" EntitySet="FeedbackTbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FeedbackT__userI__534D60F1" Association="Self.FK__FeedbackT__userI__534D60F1">
+            <End Role="UserTbl" EntitySet="UserTbl" />
+            <End Role="FeedbackTbl" EntitySet="FeedbackTbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Resources__userI__5070F446" Association="Self.FK__Resources__userI__5070F446">
+            <End Role="UserTbl" EntitySet="UserTbl" />
+            <End Role="ResourcesTbl" EntitySet="ResourcesTbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LexiNetDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FeedbackTbl">
+          <Key>
+            <PropertyRef Name="feebackID" />
+          </Key>
+          <Property Name="feebackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="readabilityRating" Type="Int32" />
+          <Property Name="spacingRating" Type="Int32" />
+          <Property Name="colourRating" Type="Int32" />
+          <Property Name="userID" Type="Int32" />
+          <Property Name="resourceID" Type="Int32" />
+          <NavigationProperty Name="ResourcesTbl" Relationship="Self.FK__FeedbackT__resou__5441852A" FromRole="FeedbackTbl" ToRole="ResourcesTbl" />
+          <NavigationProperty Name="UserTbl" Relationship="Self.FK__FeedbackT__userI__534D60F1" FromRole="FeedbackTbl" ToRole="UserTbl" />
+          <Property Name="reviewerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ResourcesTbl">
+          <Key>
+            <PropertyRef Name="resourceID" />
+          </Key>
+          <Property Name="resourceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="resourceName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="resourceType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userID" Type="Int32" />
+          <NavigationProperty Name="FeedbackTbls" Relationship="Self.FK__FeedbackT__resou__5441852A" FromRole="ResourcesTbl" ToRole="FeedbackTbl" />
+          <NavigationProperty Name="UserTbl" Relationship="Self.FK__Resources__userI__5070F446" FromRole="ResourcesTbl" ToRole="UserTbl" />
+        </EntityType>
+        <EntityType Name="UserTbl">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FeedbackTbls" Relationship="Self.FK__FeedbackT__userI__534D60F1" FromRole="UserTbl" ToRole="FeedbackTbl" />
+          <NavigationProperty Name="ResourcesTbls" Relationship="Self.FK__Resources__userI__5070F446" FromRole="UserTbl" ToRole="ResourcesTbl" />
+        </EntityType>
+        <Association Name="FK__FeedbackT__resou__5441852A">
+          <End Role="ResourcesTbl" Type="Self.ResourcesTbl" Multiplicity="0..1" />
+          <End Role="FeedbackTbl" Type="Self.FeedbackTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResourcesTbl">
+              <PropertyRef Name="resourceID" />
+            </Principal>
+            <Dependent Role="FeedbackTbl">
+              <PropertyRef Name="resourceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FeedbackT__userI__534D60F1">
+          <End Role="UserTbl" Type="Self.UserTbl" Multiplicity="0..1" />
+          <End Role="FeedbackTbl" Type="Self.FeedbackTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTbl">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="FeedbackTbl">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Resources__userI__5070F446">
+          <End Role="UserTbl" Type="Self.UserTbl" Multiplicity="0..1" />
+          <End Role="ResourcesTbl" Type="Self.ResourcesTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTbl">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="ResourcesTbl">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LexiNetDbEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FeedbackTbls" EntityType="Self.FeedbackTbl" />
+          <EntitySet Name="ResourcesTbls" EntityType="Self.ResourcesTbl" />
+          <EntitySet Name="UserTbls" EntityType="Self.UserTbl" />
+          <AssociationSet Name="FK__FeedbackT__resou__5441852A" Association="Self.FK__FeedbackT__resou__5441852A">
+            <End Role="ResourcesTbl" EntitySet="ResourcesTbls" />
+            <End Role="FeedbackTbl" EntitySet="FeedbackTbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FeedbackT__userI__534D60F1" Association="Self.FK__FeedbackT__userI__534D60F1">
+            <End Role="UserTbl" EntitySet="UserTbls" />
+            <End Role="FeedbackTbl" EntitySet="FeedbackTbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Resources__userI__5070F446" Association="Self.FK__Resources__userI__5070F446">
+            <End Role="UserTbl" EntitySet="UserTbls" />
+            <End Role="ResourcesTbl" EntitySet="ResourcesTbls" />
+          </AssociationSet>
+          <EntitySet Name="resourceReviewsBs" EntityType="LexiNetDbModel.resourceReviewsB" />
+          <FunctionImport Name="validateA" ReturnType="Collection(Int32)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="resourceReviewsB">
+          <Key>
+            <PropertyRef Name="resourceName" />
+            <PropertyRef Name="resourceType" />
+          </Key>
+          <Property Name="resourceName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="resourceType" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="readabilityRating" Type="Int32" />
+          <Property Name="spacingRating" Type="Int32" />
+          <Property Name="colourRating" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LexiNetDbModelStoreContainer" CdmEntityContainer="LexiNetDbEntities2">
+          <EntitySetMapping Name="FeedbackTbls">
+            <EntityTypeMapping TypeName="LexiNetDbModel.FeedbackTbl">
+              <MappingFragment StoreEntitySet="FeedbackTbl">
+                <ScalarProperty Name="reviewerName" ColumnName="reviewerName" />
+                <ScalarProperty Name="feebackID" ColumnName="feebackID" />
+                <ScalarProperty Name="readabilityRating" ColumnName="readabilityRating" />
+                <ScalarProperty Name="spacingRating" ColumnName="spacingRating" />
+                <ScalarProperty Name="colourRating" ColumnName="colourRating" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="resourceID" ColumnName="resourceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResourcesTbls">
+            <EntityTypeMapping TypeName="LexiNetDbModel.ResourcesTbl">
+              <MappingFragment StoreEntitySet="ResourcesTbl">
+                <ScalarProperty Name="resourceID" ColumnName="resourceID" />
+                <ScalarProperty Name="resourceName" ColumnName="resourceName" />
+                <ScalarProperty Name="resourceType" ColumnName="resourceType" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTbls">
+            <EntityTypeMapping TypeName="LexiNetDbModel.UserTbl">
+              <MappingFragment StoreEntitySet="UserTbl">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="resourceReviewsBs">
+            <EntityTypeMapping TypeName="LexiNetDbModel.resourceReviewsB">
+              <MappingFragment StoreEntitySet="resourceReviewsB">
+                <ScalarProperty Name="colourRating" ColumnName="colourRating" />
+                <ScalarProperty Name="spacingRating" ColumnName="spacingRating" />
+                <ScalarProperty Name="readabilityRating" ColumnName="readabilityRating" />
+                <ScalarProperty Name="resourceType" ColumnName="resourceType" />
+                <ScalarProperty Name="resourceName" ColumnName="resourceName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="validateA" FunctionName="LexiNetDbModel.Store.validateA" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

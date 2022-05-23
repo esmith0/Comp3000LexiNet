@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LexiNetV2.resourceReviewsB>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Resource Ratings!</h2>
+
+<table class="table">
+    <tr>
+        <th>
+           <b>Readability Rating:</b> 
+        </th>
+        <th>
+            <b> Spacing (words and images) Rating:</b>
+        </th>
+        <th>
+           <b> Colour Rating:</b> 
+        </th>
+        <th>
+            <b> Name of Resource: </b>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.readabilityRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spacingRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.colourRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.resourceName)
+        </td>
+        <td>
+            <!-- @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })-->
+        </td>
+    </tr>
+}
+
+</table>
