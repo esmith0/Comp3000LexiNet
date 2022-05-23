@@ -4,23 +4,22 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Resource Ratings!</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.readabilityRating)
+           <b>Readability Rating:</b> 
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.spacingRating)
+            <b> Spacing (words and images) Rating:</b>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.colourRating)
+           <b> Colour Rating:</b> 
         </th>
-        <th></th>
+        <th>
+            <b> Name of Resource: </b>
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -35,9 +34,12 @@
             @Html.DisplayFor(modelItem => item.colourRating)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.DisplayFor(modelItem => item.resourceName)
+        </td>
+        <td>
+            <!-- @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })-->
         </td>
     </tr>
 }

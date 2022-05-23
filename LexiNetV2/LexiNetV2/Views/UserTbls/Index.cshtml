@@ -12,19 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.username)
+            <b> Users: </b>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.password)
-        </th>
-        <th></th>
-    </tr>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.password)
+            
         </th>
         <th></th>
     </tr>
@@ -35,15 +26,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.username)
             </td>
+            
             <td>
-                @Html.DisplayFor(modelItem => item.password)
+                <!--@Html.ActionLink("Edit", "Edit", new { id = item.userID }) |-->
+                <!--@Html.ActionLink("Details", "Details", new { id = item.userID }) |-->
+                <!--@Html.ActionLink("Delete", "Delete", new { id = item.userID })-->
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.userID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.userID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.userID })
-            </td>
-        </tr>
-    }
+            </tr>
+        }
 
-</table>
+    </table>

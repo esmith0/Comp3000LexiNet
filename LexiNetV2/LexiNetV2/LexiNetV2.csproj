@@ -164,7 +164,7 @@
     <Compile Include="UserTbl.cs">
       <DependentUpon>LexiNetmodel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\resourceReviewsBsController.cs" />
+    <Compile Include="Controllers\resourceReviewsBsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -216,8 +216,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\UserTbls\Create.cshtml" />
     <Content Include="Views\UserTbls\Delete.cshtml" />
@@ -234,7 +232,6 @@
     <Content Include="Views\FeedbackTbls\Details.cshtml" />
     <Content Include="Views\FeedbackTbls\Edit.cshtml" />
     <Content Include="Views\FeedbackTbls\Index.cshtml" />
-    <Content Include="Views\resourceReviewsBs\Create.cshtml" />
     <Content Include="Views\resourceReviewsBs\Delete.cshtml" />
     <Content Include="Views\resourceReviewsBs\Details.cshtml" />
     <Content Include="Views\resourceReviewsBs\Edit.cshtml" />
