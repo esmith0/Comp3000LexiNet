@@ -5,5 +5,5 @@ Research indicates that students with dyslexia make excellent coders, however do
 LexiNet is designed to become a platform on which educators can upload their resources which can then be reviewed by students with dyslexia.
 This model is designed to encourage development of inclusive resources.
 
-<h2> COMP 3000 </h2>
+- E Smith.
  
