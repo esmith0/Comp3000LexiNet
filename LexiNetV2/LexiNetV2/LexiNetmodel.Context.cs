@@ -28,5 +28,6 @@ namespace LexiNetV2
         public virtual DbSet<FeedbackTbl> FeedbackTbls { get; set; }
         public virtual DbSet<ResourcesTbl> ResourcesTbls { get; set; }
         public virtual DbSet<UserTbl> UserTbls { get; set; }
+        public virtual DbSet<resourceReviewsB> resourceReviewsBs { get; set; }
     }
 }

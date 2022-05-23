@@ -155,12 +155,16 @@
       <DependentUpon>LexiNetmodel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="resourceReviewsB.cs">
+      <DependentUpon>LexiNetmodel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ResourcesTbl.cs">
       <DependentUpon>LexiNetmodel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserTbl.cs">
       <DependentUpon>LexiNetmodel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\resourceReviewsBsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -230,6 +234,11 @@
     <Content Include="Views\FeedbackTbls\Details.cshtml" />
     <Content Include="Views\FeedbackTbls\Edit.cshtml" />
     <Content Include="Views\FeedbackTbls\Index.cshtml" />
+    <Content Include="Views\resourceReviewsBs\Create.cshtml" />
+    <Content Include="Views\resourceReviewsBs\Delete.cshtml" />
+    <Content Include="Views\resourceReviewsBs\Details.cshtml" />
+    <Content Include="Views\resourceReviewsBs\Edit.cshtml" />
+    <Content Include="Views\resourceReviewsBs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

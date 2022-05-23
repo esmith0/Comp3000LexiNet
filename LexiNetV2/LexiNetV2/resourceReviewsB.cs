@@ -12,17 +12,12 @@ namespace LexiNetV2
     using System;
     using System.Collections.Generic;
     
-    public partial class FeedbackTbl
+    public partial class resourceReviewsB
     {
-        public int feebackID { get; set; }
+        public string resourceName { get; set; }
+        public string resourceType { get; set; }
         public Nullable<int> readabilityRating { get; set; }
         public Nullable<int> spacingRating { get; set; }
         public Nullable<int> colourRating { get; set; }
-        public Nullable<int> userID { get; set; }
-        public Nullable<int> resourceID { get; set; }
-        public string reviewerName { get; set; }
-    
-        public virtual ResourcesTbl ResourcesTbl { get; set; }
-        public virtual UserTbl UserTbl { get; set; }
     }
 }

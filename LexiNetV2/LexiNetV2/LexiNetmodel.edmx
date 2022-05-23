@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LexiNetDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LexiNetDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="FeedbackTbl">
           <Key>
             <PropertyRef Name="feebackID" />
@@ -15,6 +15,7 @@
           <Property Name="colourRating" Type="int" />
           <Property Name="userID" Type="int" />
           <Property Name="resourceID" Type="int" />
+          <Property Name="reviewerName" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="ResourcesTbl">
           <Key>
@@ -32,6 +33,19 @@
           <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LexiNetDb.dbo.resourceReviewsB' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="resourceReviewsB">
+          <Key>
+            <PropertyRef Name="resourceName" />
+            <PropertyRef Name="resourceType" />
+          </Key>
+          <Property Name="resourceName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="resourceType" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="readabilityRating" Type="int" />
+          <Property Name="spacingRating" Type="int" />
+          <Property Name="colourRating" Type="int" />
         </EntityType>
         <Association Name="FK__FeedbackT__resou__5441852A">
           <End Role="ResourcesTbl" Type="Self.ResourcesTbl" Multiplicity="0..1" />
@@ -73,6 +87,15 @@
           <EntitySet Name="FeedbackTbl" EntityType="Self.FeedbackTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResourcesTbl" EntityType="Self.ResourcesTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTbl" EntityType="Self.UserTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="resourceReviewsB" EntityType="Self.resourceReviewsB" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [resourceReviewsB].[resourceName] AS [resourceName], 
+    [resourceReviewsB].[resourceType] AS [resourceType], 
+    [resourceReviewsB].[readabilityRating] AS [readabilityRating], 
+    [resourceReviewsB].[spacingRating] AS [spacingRating], 
+    [resourceReviewsB].[colourRating] AS [colourRating]
+    FROM [dbo].[resourceReviewsB] AS [resourceReviewsB]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__FeedbackT__resou__5441852A" Association="Self.FK__FeedbackT__resou__5441852A">
             <End Role="ResourcesTbl" EntitySet="ResourcesTbl" />
             <End Role="FeedbackTbl" EntitySet="FeedbackTbl" />
@@ -86,8 +109,7 @@
             <End Role="ResourcesTbl" EntitySet="ResourcesTbl" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LexiNetDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -103,6 +125,7 @@
           <Property Name="resourceID" Type="Int32" />
           <NavigationProperty Name="ResourcesTbl" Relationship="Self.FK__FeedbackT__resou__5441852A" FromRole="FeedbackTbl" ToRole="ResourcesTbl" />
           <NavigationProperty Name="UserTbl" Relationship="Self.FK__FeedbackT__userI__534D60F1" FromRole="FeedbackTbl" ToRole="UserTbl" />
+          <Property Name="reviewerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ResourcesTbl">
           <Key>
@@ -177,7 +200,19 @@
             <End Role="UserTbl" EntitySet="UserTbls" />
             <End Role="ResourcesTbl" EntitySet="ResourcesTbls" />
           </AssociationSet>
+          <EntitySet Name="resourceReviewsBs" EntityType="LexiNetDbModel.resourceReviewsB" />
         </EntityContainer>
+        <EntityType Name="resourceReviewsB">
+          <Key>
+            <PropertyRef Name="resourceName" />
+            <PropertyRef Name="resourceType" />
+          </Key>
+          <Property Name="resourceName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="resourceType" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="readabilityRating" Type="Int32" />
+          <Property Name="spacingRating" Type="Int32" />
+          <Property Name="colourRating" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -187,6 +222,7 @@
           <EntitySetMapping Name="FeedbackTbls">
             <EntityTypeMapping TypeName="LexiNetDbModel.FeedbackTbl">
               <MappingFragment StoreEntitySet="FeedbackTbl">
+                <ScalarProperty Name="reviewerName" ColumnName="reviewerName" />
                 <ScalarProperty Name="feebackID" ColumnName="feebackID" />
                 <ScalarProperty Name="readabilityRating" ColumnName="readabilityRating" />
                 <ScalarProperty Name="spacingRating" ColumnName="spacingRating" />
@@ -212,6 +248,17 @@
                 <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="resourceReviewsBs">
+            <EntityTypeMapping TypeName="LexiNetDbModel.resourceReviewsB">
+              <MappingFragment StoreEntitySet="resourceReviewsB">
+                <ScalarProperty Name="colourRating" ColumnName="colourRating" />
+                <ScalarProperty Name="spacingRating" ColumnName="spacingRating" />
+                <ScalarProperty Name="readabilityRating" ColumnName="readabilityRating" />
+                <ScalarProperty Name="resourceType" ColumnName="resourceType" />
+                <ScalarProperty Name="resourceName" ColumnName="resourceName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -12,6 +12,7 @@
     <Property Name="resourceID" Type="Int32" />
     <NavigationProperty Name="ResourcesTbl" Relationship="Self.FK__FeedbackT__resou__5441852A" FromRole="FeedbackTbl" ToRole="ResourcesTbl" />
     <NavigationProperty Name="UserTbl" Relationship="Self.FK__FeedbackT__userI__534D60F1" FromRole="FeedbackTbl" ToRole="UserTbl" />
+    <Property Name="reviewerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="ResourcesTbl">
     <Key>
@@ -86,5 +87,17 @@
       <End Role="UserTbl" EntitySet="UserTbls" />
       <End Role="ResourcesTbl" EntitySet="ResourcesTbls" />
     </AssociationSet>
+    <EntitySet Name="resourceReviewsBs" EntityType="LexiNetDbModel.resourceReviewsB" />
   </EntityContainer>
+  <EntityType Name="resourceReviewsB">
+    <Key>
+      <PropertyRef Name="resourceName" />
+      <PropertyRef Name="resourceType" />
+    </Key>
+    <Property Name="resourceName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="resourceType" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="readabilityRating" Type="Int32" />
+    <Property Name="spacingRating" Type="Int32" />
+    <Property Name="colourRating" Type="Int32" />
+  </EntityType>
 </Schema>

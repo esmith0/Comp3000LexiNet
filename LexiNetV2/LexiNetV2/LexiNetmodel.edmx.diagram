@@ -11,6 +11,7 @@
         <AssociationConnector Association="LexiNetDbModel.FK__FeedbackT__resou__5441852A" ManuallyRouted="false" />
         <AssociationConnector Association="LexiNetDbModel.FK__FeedbackT__userI__534D60F1" ManuallyRouted="false" />
         <AssociationConnector Association="LexiNetDbModel.FK__Resources__userI__5070F446" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LexiNetDbModel.resourceReviewsB" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

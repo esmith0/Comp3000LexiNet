@@ -4,6 +4,7 @@
     <EntitySetMapping Name="FeedbackTbls">
       <EntityTypeMapping TypeName="LexiNetDbModel.FeedbackTbl">
         <MappingFragment StoreEntitySet="FeedbackTbl">
+          <ScalarProperty Name="reviewerName" ColumnName="reviewerName" />
           <ScalarProperty Name="feebackID" ColumnName="feebackID" />
           <ScalarProperty Name="readabilityRating" ColumnName="readabilityRating" />
           <ScalarProperty Name="spacingRating" ColumnName="spacingRating" />
@@ -29,6 +30,17 @@
           <ScalarProperty Name="userID" ColumnName="userID" />
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="resourceReviewsBs">
+      <EntityTypeMapping TypeName="LexiNetDbModel.resourceReviewsB">
+        <MappingFragment StoreEntitySet="resourceReviewsB">
+          <ScalarProperty Name="colourRating" ColumnName="colourRating" />
+          <ScalarProperty Name="spacingRating" ColumnName="spacingRating" />
+          <ScalarProperty Name="readabilityRating" ColumnName="readabilityRating" />
+          <ScalarProperty Name="resourceType" ColumnName="resourceType" />
+          <ScalarProperty Name="resourceName" ColumnName="resourceName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

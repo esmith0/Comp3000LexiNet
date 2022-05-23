@@ -10,6 +10,7 @@
     <Property Name="colourRating" Type="int" />
     <Property Name="userID" Type="int" />
     <Property Name="resourceID" Type="int" />
+    <Property Name="reviewerName" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="ResourcesTbl">
     <Key>
@@ -27,6 +28,19 @@
     <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'LexiNetDb.dbo.resourceReviewsB' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="resourceReviewsB">
+    <Key>
+      <PropertyRef Name="resourceName" />
+      <PropertyRef Name="resourceType" />
+    </Key>
+    <Property Name="resourceName" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="resourceType" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="readabilityRating" Type="int" />
+    <Property Name="spacingRating" Type="int" />
+    <Property Name="colourRating" Type="int" />
   </EntityType>
   <Association Name="FK__FeedbackT__resou__5441852A">
     <End Role="ResourcesTbl" Type="Self.ResourcesTbl" Multiplicity="0..1" />
@@ -68,6 +82,15 @@
     <EntitySet Name="FeedbackTbl" EntityType="Self.FeedbackTbl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ResourcesTbl" EntityType="Self.ResourcesTbl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserTbl" EntityType="Self.UserTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="resourceReviewsB" EntityType="Self.resourceReviewsB" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [resourceReviewsB].[resourceName] AS [resourceName], 
+    [resourceReviewsB].[resourceType] AS [resourceType], 
+    [resourceReviewsB].[readabilityRating] AS [readabilityRating], 
+    [resourceReviewsB].[spacingRating] AS [spacingRating], 
+    [resourceReviewsB].[colourRating] AS [colourRating]
+    FROM [dbo].[resourceReviewsB] AS [resourceReviewsB]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK__FeedbackT__resou__5441852A" Association="Self.FK__FeedbackT__resou__5441852A">
       <End Role="ResourcesTbl" EntitySet="ResourcesTbl" />
       <End Role="FeedbackTbl" EntitySet="FeedbackTbl" />
