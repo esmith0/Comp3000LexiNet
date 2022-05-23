@@ -88,6 +88,10 @@
       <End Role="ResourcesTbl" EntitySet="ResourcesTbls" />
     </AssociationSet>
     <EntitySet Name="resourceReviewsBs" EntityType="LexiNetDbModel.resourceReviewsB" />
+    <FunctionImport Name="validateA" ReturnType="Collection(Int32)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="resourceReviewsB">
     <Key>

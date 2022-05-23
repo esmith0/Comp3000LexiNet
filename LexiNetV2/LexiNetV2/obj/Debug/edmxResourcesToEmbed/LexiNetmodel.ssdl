@@ -78,6 +78,10 @@ warning 6002: The table/view 'LexiNetDb.dbo.resourceReviewsB' does not have a pr
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="validateA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+  </Function>
   <EntityContainer Name="LexiNetDbModelStoreContainer">
     <EntitySet Name="FeedbackTbl" EntityType="Self.FeedbackTbl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ResourcesTbl" EntityType="Self.ResourcesTbl" Schema="dbo" store:Type="Tables" />

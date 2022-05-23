@@ -12,6 +12,8 @@ namespace LexiNetV2
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class LexiNetDbEntities2 : DbContext
     {
@@ -29,5 +31,18 @@ namespace LexiNetV2
         public virtual DbSet<ResourcesTbl> ResourcesTbls { get; set; }
         public virtual DbSet<UserTbl> UserTbls { get; set; }
         public virtual DbSet<resourceReviewsB> resourceReviewsBs { get; set; }
+    
+        public virtual ObjectResult<Nullable<int>> validateA(string username, string password)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("validateA", usernameParameter, passwordParameter);
+        }
     }
 }

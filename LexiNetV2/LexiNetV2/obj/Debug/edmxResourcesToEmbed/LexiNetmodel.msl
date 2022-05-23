@@ -44,5 +44,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="validateA" FunctionName="LexiNetDbModel.Store.validateA" />
   </EntityContainerMapping>
 </Mapping>

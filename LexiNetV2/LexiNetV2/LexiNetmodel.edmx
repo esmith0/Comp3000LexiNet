@@ -83,6 +83,10 @@ warning 6002: The table/view 'LexiNetDb.dbo.resourceReviewsB' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="validateA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="LexiNetDbModelStoreContainer">
           <EntitySet Name="FeedbackTbl" EntityType="Self.FeedbackTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResourcesTbl" EntityType="Self.ResourcesTbl" Schema="dbo" store:Type="Tables" />
@@ -201,6 +205,10 @@ warning 6002: The table/view 'LexiNetDb.dbo.resourceReviewsB' does not have a pr
             <End Role="ResourcesTbl" EntitySet="ResourcesTbls" />
           </AssociationSet>
           <EntitySet Name="resourceReviewsBs" EntityType="LexiNetDbModel.resourceReviewsB" />
+          <FunctionImport Name="validateA" ReturnType="Collection(Int32)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="resourceReviewsB">
           <Key>
@@ -262,6 +270,7 @@ warning 6002: The table/view 'LexiNetDb.dbo.resourceReviewsB' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="validateA" FunctionName="LexiNetDbModel.Store.validateA" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
